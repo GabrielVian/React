@@ -15,13 +15,23 @@
       function ChatInput({chatMessages, setChatMessages}) {
 
         const [inputText, setInputText] = React.useState('');
+        const [isLoading, setIsLoading] = React.useState(false);
+
 
         function saveInputText(event){
           setInputText(event.target.value)
         }
 
-        function sendMessage() {
-
+        async function sendMessage() {
+          if(isLoading){
+            alert("Robot is thinking")
+            return;
+          }
+          if(inputText === '') {
+            alert("Empty text input")
+            return;
+          }
+          setInputText('');
           const newChatMessages = [
             ...chatMessages,
             {
@@ -32,8 +42,20 @@
           ]
           setChatMessages(newChatMessages)
 
-          const response = Chatbot.getResponse(inputText)
+          const loadingChatMessages = newChatMessages
+          setChatMessages([
+            ...loadingChatMessages,
+            {
+              message: "Loading...",
+              sender: 'robot',
+              id: crypto.randomUUID()
+            }
+          ]);
+          setIsLoading(true)
+
+          const response = await Chatbot.getResponseAsync(inputText)
           
+          setIsLoading(false)
           setChatMessages([
             ...newChatMessages,
             {
@@ -43,11 +65,13 @@
             }
           ]);
 
-          setInputText('');
         }
 
-        function handleKeyDownEnter(event){
-          if(event.key === 'Enter') sendMessage()
+        function handleKeyDown(event){
+          if(event.key === 'Enter')
+            sendMessage()
+          if(event.key === 'Escape')
+            setInputText('')
         }
 
         return (
@@ -57,7 +81,7 @@
               size="30" 
               onChange={saveInputText}
               value={inputText}
-              onKeyDown={handleKeyDownEnter}
+              onKeyDown={handleKeyDown}
             /> 
             <button onClick={sendMessage}>Send</button>
           </>
