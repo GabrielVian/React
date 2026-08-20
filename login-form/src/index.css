@@ -1,0 +1,26 @@
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: small;
+}
+.form-input{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  border-width: 1px;
+}
+.inputs-container{
+  margin-top: 5px;
+  margin-bottom: 5px; 
+}
+.button-container{
+  display: flex;
+  gap: 5px;
+}
+.button-container button{
+  background-color: rgb(0, 123, 255);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+}
