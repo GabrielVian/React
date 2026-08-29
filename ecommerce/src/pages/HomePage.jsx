@@ -2,19 +2,18 @@ import './HomePage.css';
 import { Header } from '../components/Header';
 import checkmark from '../assets/images/checkmark.png';
 // import { products } from '../../starting-code/data/products';
-//import { products } from '../../starting-code/data/products';
+import { products } from '../../starting-code/data/products';
 // import { useState } from 'react';
+import axios from 'axios';
 
 function HomePage() {
     // const products = [];
     //const [products, setProducts] = useState([]);
 
-    fetch('http://localhost:3000/api/products')
+    axios.get('http://localhost:3000/api/products')
         .then((response)=>{
-            return response.json()
-    }).then((data) =>{
-        console.log(data)
-    });
+            console.log(response.json())
+    })
 
     return (
         <>
