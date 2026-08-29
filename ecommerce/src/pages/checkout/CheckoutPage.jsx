@@ -1,5 +1,6 @@
 import './CheckoutPage.css';
 import { CheckoutHeader } from './CheckoutHeader';
+import { formatMoney } from '../../utils/money';
 
 function CheckoutPage({ cart }) {
     return (
@@ -14,25 +15,25 @@ function CheckoutPage({ cart }) {
                     <div className="order-summary">
                         {cart.map((c) => {
                             return (
-                                <div className="cart-item-container">
+                                <div className="cart-item-container" key={c.id}>
                                     <div className="delivery-date">
                                         Delivery date: Tuesday, June 21
                                     </div>
 
                                     <div className="cart-item-details-grid">
                                         <img className="product-image"
-                                            src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+                                            src={c.product.image} />
 
                                         <div className="cart-item-details">
                                             <div className="product-name">
-                                                Black and Gray Athletic Cotton Socks - 6 Pairs
+                                                {c.product.name}
                                             </div>
                                             <div className="product-price">
-                                                $10.90
+                                                {formatMoney(c.product.priceCents)}
                                             </div>
                                             <div className="product-quantity">
                                                 <span>
-                                                    Quantity: <span className="quantity-label">2</span>
+                                                    Quantity: <span className="quantity-label">{c.quantity}</span>
                                                 </span>
                                                 <span className="update-quantity-link link-primary">
                                                     Update
@@ -91,8 +92,7 @@ function CheckoutPage({ cart }) {
                                 </div>
                             )
                         })}
-
-                        <div className="cart-item-container">
+                        {/* <div className="cart-item-container">
                             <div className="delivery-date">
                                 Delivery date: Tuesday, June 21
                             </div>
@@ -240,7 +240,7 @@ function CheckoutPage({ cart }) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="payment-summary">
