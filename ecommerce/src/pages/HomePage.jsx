@@ -4,20 +4,14 @@ import checkmark from '../assets/images/checkmark.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function HomePage() {
+function HomePage({cart}) {
     // const products = [];
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
-
 
     useEffect(() => {
         axios.get('/api/products')
             .then((response) => {
                 setProducts(response.data)
-            })
-        axios.get('/api/cart-items')
-            .then((response)=>{
-                setCart(response.data)
             })
     }, [])
 
