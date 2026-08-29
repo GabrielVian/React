@@ -4,8 +4,10 @@ import {Header} from '../components/Header';
 function HomePage(){
     return(
         <>
-            <Header />
             <title>Ecommerce Project</title>
+            <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
+            <Header />
+            
            
             <div className="home-page">
                 <div className="products-grid">
