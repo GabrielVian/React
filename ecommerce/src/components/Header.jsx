@@ -1,7 +1,7 @@
 import './Header.css';
 // import {Link} from 'react-router';
 import {NavLink} from 'react-router';
-
+import searchIcon from '../assets/images/search-icon.png';
 
 export function Header() {
     return (
@@ -19,7 +19,7 @@ export function Header() {
                 <input className="search-bar" type="text" placeholder="Search" />
 
                 <button className="search-button">
-                    <img className="search-icon" src="images/icons/search-icon.png" />
+                    <img className="search-icon" src={searchIcon} />
                 </button>
             </div>
 
