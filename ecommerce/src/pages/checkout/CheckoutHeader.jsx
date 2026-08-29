@@ -2,6 +2,7 @@ import './CheckoutHeader.css';
 import {Link} from 'react-router';
 
 export function CheckoutHeader() {
+    // Lesson 6c already done (LINK)
     return (
         <div className="checkout-header">
             <div className="header-content">
