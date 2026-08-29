@@ -1,19 +1,20 @@
 import './HomePage.css';
 import { Header } from '../components/Header';
 import checkmark from '../assets/images/checkmark.png';
-// import { products } from '../../starting-code/data/products';
-import { products } from '../../starting-code/data/products';
-// import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function HomePage() {
     // const products = [];
-    //const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-    axios.get('http://localhost:3000/api/products')
-        .then((response)=>{
-            console.log(response.json())
-    })
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/products')
+            .then((response) => {
+                setProducts(response.data)
+            })
+    }, [])
+
 
     return (
         <>
@@ -25,7 +26,7 @@ function HomePage() {
             <div className="home-page">
                 <div className="products-grid">
                     {products.map((p) => {
-                        return(
+                        return (
                             <div className="product-container" key={p.id}>
                                 <div className="product-image-container">
                                     <img className="product-image"
@@ -38,14 +39,14 @@ function HomePage() {
 
                                 <div className="product-rating-container">
                                     <img className="product-rating-stars"
-                                        src={"images/ratings/rating-"+(p.rating.stars*10)+".png"} />
+                                        src={"images/ratings/rating-" + (p.rating.stars * 10) + ".png"} />
                                     <div className="product-rating-count link-primary">
                                         {p.rating.count}
                                     </div>
                                 </div>
 
                                 <div className="product-price">
-                                    ${(p.priceCents/100).toFixed(2)}
+                                    ${(p.priceCents / 100).toFixed(2)}
                                 </div>
 
                                 <div className="product-quantity-container">
