@@ -4,12 +4,18 @@ import { DeliveryOptions } from "./DeliveryOptions";
 import { useState } from "react";
 export default function CartItemDetails({c,deliveryOptions, loadCart}) {
     const [updated, setUpdated] = useState(false); 
-
+    const [quantity, setQuantity] = useState(c.quantity)
     async function deleteItem(){
         await axios.delete(`/api/cart-items/${c.product.id}`)
         await loadCart();
     }
-    const changeUpdate = ()=>{
+    const changeUpdate = async ()=>{
+        if(updated){
+            await axios.put(`/api/cart-items/${c.product.id}`, {
+                quantity: Number(quantity)
+            });
+            await loadCart();
+        }
         setUpdated(!updated)
     }
     return (
@@ -28,7 +34,10 @@ export default function CartItemDetails({c,deliveryOptions, loadCart}) {
                     <span>
                         Quantity: 
                         {updated && 
-                            <input type="text" name="" id="" style={{width: '50px'}}/>
+                            <input type="text" name="" id="" style={{width: '50px'}} value={quantity} onChange={(event)=>{
+                                const q = event.target.value;
+                                setQuantity(q);
+                            }}/>
                         }
 
                         {!updated && 
