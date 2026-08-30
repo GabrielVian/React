@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import OrdersGrid from './OrdersGrid';
 
 
-function OrdersPage({ cart }) {
+function OrdersPage({ cart , loadCart}) {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
         const fetchOrderData = async () => {
@@ -18,17 +18,14 @@ function OrdersPage({ cart }) {
 
     }, [])
 
-    console.log(orders)
     return (
         <>
             <title>Orders</title>
             <link rel="icon" type="image/svg+xml" href="orders-favicon.png" />
             <Header cart={cart} />
-
             <div className="orders-page">
                 <div className="page-title">Your Orders</div>
-
-                <OrdersGrid orders={orders}/>
+                <OrdersGrid orders={orders} loadCart={loadCart}/>
             </div>
         </>
     )

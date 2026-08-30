@@ -1,7 +1,7 @@
 import OrderHeader from "./OrderHeader"
 import OrderDetailsGrid from "./OrderDetailsGrid"
 
-export default function OrdersGrid({orders}) {
+export default function OrdersGrid({orders, loadCart}) {
     return (
         <div className="orders-grid">
             {orders && (
@@ -9,7 +9,7 @@ export default function OrdersGrid({orders}) {
                     return (
                         <div className="order-container" key={o.id}>
                             <OrderHeader o={o}/>
-                            <OrderDetailsGrid o={o} />
+                            <OrderDetailsGrid o={o} loadCart={loadCart}/>
                         </div>
                     )
                 })
