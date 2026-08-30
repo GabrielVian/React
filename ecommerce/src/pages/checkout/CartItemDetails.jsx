@@ -20,7 +20,9 @@ export default function CartItemDetails({c,deliveryOptions, loadCart}) {
                 </div>
                 <div className="product-quantity">
                     <span>
-                        Quantity: <span className="quantity-label">{c.quantity}</span>
+                        Quantity: 
+                        <input type="text" name="" id="" style={{width: '50px'}}/>
+                        <span className="quantity-label">{c.quantity}</span>
                     </span>
                     <span className="update-quantity-link link-primary">
                         Update
