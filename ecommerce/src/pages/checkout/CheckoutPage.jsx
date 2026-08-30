@@ -16,12 +16,16 @@ function CheckoutPage({ cart , loadCart}) {
         }
         fetchCheckoutData()
 
+        
+    }, [])
+
+    useEffect(()=>{
         const fetchPaymentSummary = async () => {
             const response = await axios.get('/api/payment-summary')
             setPaymentSummary(response.data);
         }
         fetchPaymentSummary()
-    }, [cart])
+    },[cart])
 
     return (
         <>
