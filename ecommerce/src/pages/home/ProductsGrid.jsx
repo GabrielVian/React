@@ -1,7 +1,6 @@
 
 import checkmark from '../../assets/images/checkmark.png';
 import { formatMoney } from '../../utils/money';
-import '../OrdersPage.css'
 
 export function ProductsGrid({ products }) {
     return (
