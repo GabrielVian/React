@@ -1,7 +1,6 @@
 import './TrackingPage.css';
 import {Header} from '../components/Header'; 
 import { Link } from 'react-router';
-// Already done it 
 function TrackingPage({ cart }) {
     return (
         <>
