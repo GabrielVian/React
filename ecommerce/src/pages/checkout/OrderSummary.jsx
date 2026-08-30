@@ -39,35 +39,6 @@ export function OrderSummary({deliveryOptions, cart}) {
                                 </div>
                             </div>
                             <DeliveryOptions cartDeliveryOptionId={c.deliveryOptionId} cartId={c.id}  deliveryOptions={deliveryOptions}/>
-                            {/* <div className="delivery-options">
-                                <div className="delivery-options-title">
-                                    Choose a delivery option:
-                                </div>
-                                {deliveryOptions.map((d) => {
-                                    let priceString = 'FREE Shipping';
-                                    if (d.priceCents > 0) {
-                                        priceString = formatMoney(d.priceCents);
-                                    }
-
-                                    return (
-                                        <div key={d.id} className="delivery-option">
-                                            <input type="radio"
-                                                checked={d.id === c.deliveryOptionId}
-                                                className="delivery-option-input"
-                                                name={`delivery-option-${c.id}`} />
-                                            <div>
-                                                <div className="delivery-option-date">
-                                                    {dayjs(d.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
-
-                                                </div>
-                                                <div className="delivery-option-price">
-                                                    {priceString}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div> */}
                         </div>
                     </div>
                 )
