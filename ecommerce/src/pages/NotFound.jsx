@@ -1,9 +1,9 @@
 import { Header } from "../components/Header";
 
-export function NotFound(){
+export function NotFound({cart}){
     return (
         <>
-            <Header/>
+            <Header cart={cart}/>
             <br />
             <br />
             <br />
