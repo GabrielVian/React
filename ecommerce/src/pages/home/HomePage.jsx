@@ -1,9 +1,9 @@
 import './HomePage.css';
-import { Header } from '../components/Header';
-import checkmark from '../assets/images/checkmark.png';
+import { Header } from '../../components/Header';
+import checkmark from '../../assets/images/checkmark.png';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { formatMoney } from '../utils/money';
+import { formatMoney } from '../../utils/money';
 
 function HomePage({cart}) {
     // const products = [];

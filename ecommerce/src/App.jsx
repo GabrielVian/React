@@ -1,5 +1,5 @@
 import './App.css'
-import HomePage from './pages/HomePage'
+import HomePage from './pages/home/HomePage'
 import { Routes, Route } from 'react-router';
 import CheckoutPage from './pages/checkout/CheckoutPage';
 import OrdersPage from './pages/OrdersPage';
@@ -21,9 +21,9 @@ function App() {
   return (
     <Routes>
       <Route index element={<HomePage cart={cart} />} />
-      <Route path='orders' element={<OrdersPage />} />
+      <Route path='orders' element={<OrdersPage cart={cart} />} />
       <Route path='checkout' element={<CheckoutPage cart={cart} />} />
-      <Route path='tracking' element={<TrackingPage />} />
+      <Route path='tracking' element={<TrackingPage cart={cart} />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   )
