@@ -25,7 +25,7 @@ function TrackingPage({ cart }) {
 
     const totalDeliveryTimeMs = p.estimatedDeliveryTimeMs - order.orderTimeMs;
     const timePassedMs  = (dayjs().valueOf() - order.orderTimeMs );
-    let deliveryProgress = (timePassedMs / totalDeliveryTimeMs) *100;
+    let deliveryProgress = (timePassedMs / totalDeliveryTimeMs) * 100 ;
 
     if(deliveryProgress > 100) deliveryProgress = 100;
 
@@ -43,7 +43,11 @@ function TrackingPage({ cart }) {
                     </Link>
 
                     <div className="delivery-date">
-                        Arriving on {dayjs(p.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
+                        {(deliveryProgress >= 100) && 'Delivered on '}
+                        {(deliveryProgress < 100) && 'Arriving on '}
+
+                        
+                        {dayjs(p.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
                     </div>
 
                     <div className="product-info">
@@ -57,17 +61,16 @@ function TrackingPage({ cart }) {
                     <img className="product-image" src={p.product.image} />
 
                     <div className="progress-labels-container">
-                        <div className="progress-label">
+                        <div className={"progress-label "+(deliveryProgress < 33 ? "current-status" : "")}>
                             Preparing
                         </div>
-                        <div className="progress-label current-status">
+                        <div className={"progress-label "+((deliveryProgress >= 33 && deliveryProgress <100) ? "current-status" : "")}>
                             Shipped
                         </div>
-                        <div className="progress-label">
+                        <div className={"progress-label "+(deliveryProgress === 100 ? "current-status" : "")}>
                             Delivered
                         </div>
                     </div>
-
                     <div className="progress-bar-container">
                         <div className="progress-bar" style={{width: `${deliveryProgress}%`}}></div>
                     </div>
