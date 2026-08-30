@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     loadCart()
   }, [])
-
+  window.axios=axios;
   return (
     <Routes>
       <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
