@@ -2,15 +2,15 @@ import { formatMoney } from "../../utils/money";
 import axios from "axios";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { useState } from "react";
-export default function CartItemDetails({c,deliveryOptions, loadCart}) {
-    const [updated, setUpdated] = useState(false); 
+export default function CartItemDetails({ c, deliveryOptions, loadCart }) {
+    const [updated, setUpdated] = useState(false);
     const [quantity, setQuantity] = useState(c.quantity)
-    async function deleteItem(){
+    async function deleteItem() {
         await axios.delete(`/api/cart-items/${c.product.id}`)
         await loadCart();
     }
-    const changeUpdate = async ()=>{
-        if(updated){
+    const changeUpdate = async () => {
+        if (updated) {
             await axios.put(`/api/cart-items/${c.product.id}`, {
                 quantity: Number(quantity)
             });
@@ -18,6 +18,18 @@ export default function CartItemDetails({c,deliveryOptions, loadCart}) {
         }
         setUpdated(!updated)
     }
+
+    const handleQuantityKeyDown = (event) => {
+        const keyPressed = event.key;
+
+        if (keyPressed === 'Enter') {
+            changeUpdate();
+
+        } else if (keyPressed === 'Escape') {
+            setQuantity(c.product.quantity);
+            setUpdated(false);
+        }
+    };
     return (
         <div className="cart-item-details-grid">
             <img className="product-image"
@@ -32,15 +44,17 @@ export default function CartItemDetails({c,deliveryOptions, loadCart}) {
                 </div>
                 <div className="product-quantity">
                     <span>
-                        Quantity: 
-                        {updated && 
-                            <input type="text" name="" id="" style={{width: '50px'}} value={quantity} onChange={(event)=>{
-                                const q = event.target.value;
-                                setQuantity(q);
-                            }}/>
+                        Quantity:
+                        {updated &&
+                            <input type="text" name="" id="" style={{ width: '50px' }} value={quantity}
+                                onKeyDown={handleQuantityKeyDown}
+                                onChange={(event) => {
+                                    const q = event.target.value;
+                                    setQuantity(q);
+                                }} />
                         }
 
-                        {!updated && 
+                        {!updated &&
                             <span className="quantity-label">{c.quantity}</span>
                         }
                     </span>
@@ -51,7 +65,7 @@ export default function CartItemDetails({c,deliveryOptions, loadCart}) {
                         Delete
                     </span>
                 </div>
-                
+
             </div>
             <DeliveryOptions cartDeliveryOptionId={c.deliveryOptionId} deliveryOptions={deliveryOptions} cartItem={c} loadCart={loadCart} />
         </div>
