@@ -3,7 +3,7 @@ import axios from "axios";
 import { DeliveryOptions } from "./DeliveryOptions";
 export default function CartItemDetails({c,deliveryOptions, loadCart}) {
     async function deleteItem(){
-        axios.delete(`/api/cart-items/${c.product.id}`)
+        await axios.delete(`/api/cart-items/${c.product.id}`)
         await loadCart();
     }
     return (
