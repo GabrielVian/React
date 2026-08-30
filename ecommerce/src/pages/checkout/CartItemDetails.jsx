@@ -1,12 +1,13 @@
-import { Fragment } from "react";
 import { formatMoney } from "../../utils/money";
 import axios from "axios";
-export default function CartItemDetails({c}) {
-    function deleteItem(){
+import { DeliveryOptions } from "./DeliveryOptions";
+export default function CartItemDetails({c,deliveryOptions, loadCart}) {
+    async function deleteItem(){
         axios.delete(`/api/cart-items/${c.product.id}`)
+        await loadCart();
     }
     return (
-        <Fragment>
+        <div className="cart-item-details-grid">
             <img className="product-image"
                 src={c.product.image} />
 
@@ -28,7 +29,9 @@ export default function CartItemDetails({c}) {
                         Delete
                     </span>
                 </div>
+                
             </div>
-        </Fragment>
+            <DeliveryOptions cartDeliveryOptionId={c.deliveryOptionId} deliveryOptions={deliveryOptions} cartItem={c} loadCart={loadCart} />
+        </div>
     )
 }

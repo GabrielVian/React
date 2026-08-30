@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import './App.css'
 import HomePage from './pages/home/HomePage'
 import { Routes, Route } from 'react-router';
@@ -24,7 +25,7 @@ function App() {
     <Routes>
       <Route index element={<HomePage cart={cart} loadCart={loadCart}/>} />
       <Route path='orders' element={<OrdersPage cart={cart} />} />
-      <Route path='checkout' element={<CheckoutPage cart={cart} />} />
+      <Route path='checkout' element={<CheckoutPage cart={cart} loadCart={loadCart}/>} />
       <Route path='tracking/:orderId/:productId' element={<TrackingPage cart={cart}/>} />
       <Route path='*' element={<NotFound cart={cart}/>} />
     </Routes>
