@@ -2,7 +2,11 @@ import './CheckoutHeader.css';
 import {Link} from 'react-router';
 import checkoutLockIcon from '../../assets/images/checkout-lock-icon.png';
 
-export function CheckoutHeader() {
+export function CheckoutHeader({cart}) {
+    let total = 0;
+    cart.map((c) => {
+        total += c.quantity
+    })
     return (
         <div className="checkout-header">
             <div className="header-content">
@@ -15,7 +19,7 @@ export function CheckoutHeader() {
 
                 <div className="checkout-header-middle-section">
                     Checkout (<Link className="return-to-home-link"
-                        to="/">3 items</Link>)
+                        to="/">{total} items</Link>)
                 </div>
 
                 <div className="checkout-header-right-section">
