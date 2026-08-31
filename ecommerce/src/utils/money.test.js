@@ -10,6 +10,10 @@ describe('formatMoney', ()=>{
         expect(formatMoney(1091)).toBe('$10.91');
         expect(formatMoney(1000)).toBe('$10.00');
     })
+
+    it('Check if it returns $0.00', () => {
+        expect(formatMoney(0)).toBe('$0.00');
+    })
 })
 
 
