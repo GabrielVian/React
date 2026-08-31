@@ -72,7 +72,9 @@ export default function Product({ p, loadCart }) {
             </div>
 
             <button className="add-to-cart-button button-primary"
-                onClick={addToCart}>
+                onClick={addToCart}
+                data-testid="add-to-cart"
+                >
                 Add to Cart
             </button>
         </div>
