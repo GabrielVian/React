@@ -25,7 +25,7 @@ export default function Product({ p, loadCart }) {
     }
 
     return (
-        <div className="product-container" key={p.id}>
+        <div className="product-container" key={p.id} data-testid="product-container">
             <div className="product-image-container" >
                 <img className="product-image"
                 data-testid="product-image"
