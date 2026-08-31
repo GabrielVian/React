@@ -26,8 +26,9 @@ export default function Product({ p, loadCart }) {
 
     return (
         <div className="product-container" key={p.id}>
-            <div className="product-image-container">
+            <div className="product-image-container" >
                 <img className="product-image"
+                data-testid="product-image"
                     src={p.image} />
             </div>
 
@@ -37,6 +38,7 @@ export default function Product({ p, loadCart }) {
 
             <div className="product-rating-container">
                 <img className="product-rating-stars"
+                data-testid="rating-image"
                     src={"images/ratings/rating-" + (p.rating.stars * 10) + ".png"} />
                 <div className="product-rating-count link-primary">
                     {p.rating.count}
