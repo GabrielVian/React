@@ -2,12 +2,22 @@ import './Header.css';
 // import {Link} from 'react-router';
 import {NavLink} from 'react-router';
 import searchIcon from '../assets/images/search-icon.png';
+import { useState } from 'react';
 
 export function Header({cart}) {
+    const [search, setSearch] = useState('');
     let totalQuantity = 0;
     cart.forEach((cartItem)=>{
         totalQuantity+=cartItem.quantity;
     })
+    const handleChangeSearch = (event) => {
+        const text = event.target.value
+        setSearch(text)
+    }
+    const searchProducts = ()=>{
+        
+    }
+
     return (
         <div className="header">
             <div className="left-section">
@@ -20,9 +30,9 @@ export function Header({cart}) {
             </div>
 
             <div className="middle-section">
-                <input className="search-bar" type="text" placeholder="Search" />
+                <input className="search-bar" type="text" placeholder="Search" value={search} onChange={handleChangeSearch}/>
 
-                <button className="search-button">
+                <button className="search-button" onClick={() => {searchProducts}}>
                     <img className="search-icon" src={searchIcon} />
                 </button>
             </div>
