@@ -74,9 +74,9 @@ describe('Product component', ()=>{
         const user = userEvent.setup();
         const quantitySelector = screen.getByTestId('quantityContainer');
         expect(quantitySelector).toHaveValue('1');
-        user.selectOptions(quantitySelector, '3');
+        await user.selectOptions(quantitySelector, '3')
         expect(quantitySelector).toHaveValue('3');
-
+        
     })
 })
 
